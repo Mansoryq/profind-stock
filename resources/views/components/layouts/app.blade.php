@@ -9,11 +9,9 @@
 
     <title>{{ $title ?? 'Profgid' }}</title>
 
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="{{ asset('assets/fonts/atyp/stylesheet.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('build/assets/app-DyZg3kHg.css') }}">
 
     @livewireStyles
 
@@ -29,7 +27,7 @@
 
     @livewireScripts
 
-    <script src="{{ asset('build/assets/app-BfJCirg0.js') }}"></script>
+    @vite(['resources/js/app.js'])
 
 </body>
 
