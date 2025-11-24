@@ -1,3 +1,8 @@
+@extends('components.layouts.app')
+
+@section('title', 'Главная - Profgid')
+
+@section('content')
 <div>
 
     {{-- hero section --}}
@@ -235,4 +240,57 @@
         </div>
     </section>
 
+    <!-- Pricing Plans Section -->
+    <section class="py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                    {{ __('all.payment.top.info_title') }}
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                    {{ __('all.payment.top.info_desc') }}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                @foreach($plans as $key => $plan)
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 relative">
+                        @if($plan['popular'])
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white text-xs font-semibold px-4 py-1 rounded-full">
+                                {{ __('all.payment.cards.top.recommendation') }}
+                            </div>
+                        @endif
+                        
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-900">{{ $plan['name'] }}</h3>
+                            <div class="mt-4">
+                                <span class="text-3xl font-bold text-gray-900">{{ $plan['price'] }}</span>
+                                <span class="text-lg text-gray-600 ml-1">{{ $plan['currency'] }}</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-8">
+                            @foreach($plan['features'] as $feature)
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="ml-2 text-gray-600">{{ $feature }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                        
+                        <a href="{{ route('payment') }}" 
+                           class="w-full block text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300">
+                            {{ __('all.payment.cards.top.submit_btn') }}
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
 </div>
+@endsection
